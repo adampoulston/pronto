@@ -59,8 +59,8 @@ class OwlXMLParser(BaseParser):
     @classmethod
     @nowarnings
     def parse(cls, stream):  # noqa: D102
-
-        tree = etree.parse(stream)
+        p = etree.XMLParser(huge_tree=True)
+        tree = etree.parse(stream,parser=p)
 
         meta = cls._extract_resources(tree.find(OWL_ONTOLOGY))
         terms = collections.OrderedDict()
